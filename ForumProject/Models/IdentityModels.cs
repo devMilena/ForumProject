@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ForumProject.Models.ForumModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -24,6 +25,9 @@ namespace ForumProject.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Discussion> Discussions { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         public static ApplicationDbContext Create()
         {
