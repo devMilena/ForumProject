@@ -181,10 +181,24 @@
     <Compile Include="Migrations\202004262219294_CreateTables.Designer.cs">
       <DependentUpon>202004262219294_CreateTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004262229278_UserStatistics.cs" />
+    <Compile Include="Migrations\202004262229278_UserStatistics.Designer.cs">
+      <DependentUpon>202004262229278_UserStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004262328493_CreateTables-force.cs" />
+    <Compile Include="Migrations\202004262328493_CreateTables-force.Designer.cs">
+      <DependentUpon>202004262328493_CreateTables-force.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004262329585_CategoryData.cs" />
+    <Compile Include="Migrations\202004262329585_CategoryData.Designer.cs">
+      <DependentUpon>202004262329585_CategoryData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ForumModels\Category.cs" />
     <Compile Include="Models\ForumModels\Discussion.cs" />
+    <Compile Include="Models\ForumModels\ForumViewModels\DiscussionPageViewModel.cs" />
+    <Compile Include="Models\ForumModels\ForumViewModels\HomePageViewModel.cs" />
     <Compile Include="Models\ForumModels\Post.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -255,6 +269,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Discussion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,6 +285,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004262219294_CreateTables.resx">
       <DependentUpon>202004262219294_CreateTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004262229278_UserStatistics.resx">
+      <DependentUpon>202004262229278_UserStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004262328493_CreateTables-force.resx">
+      <DependentUpon>202004262328493_CreateTables-force.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004262329585_CategoryData.resx">
+      <DependentUpon>202004262329585_CategoryData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,7 +10,7 @@ namespace ForumProject.Models.ForumModels
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int DicussionCount { get; set; }
+        public int DiscussionsCount { get; set; }
       
     }
 }

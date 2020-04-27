@@ -1,31 +1,42 @@
-﻿@{
+﻿@model ForumProject.Models.ForumModels.ForumViewModels.HomePageViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
+<div class=" row">
+    <div class="col-md-8">
+        <h3>Discussions</h3>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+        @{
+            for (int i = 0; i < Model.Discussions.Count; i++)
+            { 
+                <div class="panel panel-warning">
+                    <div class="page-header" style="text-align:center; margin-top:10px">
+                                <a href='@Url.Action("Discussion","Home", new { discussionId= @Model.Discussions[i].DiscussionId})'> @Model.Discussions[i].Title</a>
+                    </div>
+                    <div class="panel panel-body">
+                        <div class="col-md-2">
+                            <p style="text-align: center; font-size: 30px; margin-bottom: 0; color: tan"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
+                            <p style="text-align: center; margin-bottom: 0;">@Model.Discussions[i].ApplicationUser.UserName</p>
+                            <span class="badge"> Posts: @Model.Discussions[i].ApplicationUser.PostsCount</span>
+                            <span class="badge">Discussions:@Model.Discussions[i].ApplicationUser.DiscussionsCount</span>
+                        </div>
+                        <div class="col-md-8" style="text-align:center">
+                            @Model.Discussions[i].Description
+                        </div>
+                        <div class="col-md-2">
+                            <span class="glyphicon glyphicon-comment" style=" font-size: x-large; float: right" aria-hidden="true">@Model.Discussions[i].PostCount</span>
+                        </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+                    </div>
+                </div>
+        
+            }
+
+        }
+
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
