@@ -197,6 +197,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ForumModels\Category.cs" />
     <Compile Include="Models\ForumModels\Discussion.cs" />
+    <Compile Include="Models\ForumModels\ForumViewModels\CreateDiscussionViewModel.cs" />
     <Compile Include="Models\ForumModels\ForumViewModels\DiscussionPageViewModel.cs" />
     <Compile Include="Models\ForumModels\ForumViewModels\HomePageViewModel.cs" />
     <Compile Include="Models\ForumModels\Post.cs" />
@@ -270,6 +271,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Discussion.cshtml" />
+    <Content Include="Views\Home\CreateDiscussion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

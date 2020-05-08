@@ -1,0 +1,34 @@
+﻿@model ForumProject.Models.ForumModels.ForumViewModels.CreateDiscussionViewModel
+@{
+    ViewBag.Title = "CreateDiscussion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("CreateDiscussion", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group" style="margin-left:15px" >
+        <h2>New discussion</h2>
+        @Html.AntiForgeryToken()
+        <h4>Create a new discussion.</h4>
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+    </div>
+    
+    <div class="form-group" style="margin-left:15px">             
+        @Html.LabelFor(m => m.Title )
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-left:15px">
+        @Html.LabelFor(m => m.CategoryId)
+        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "CategoryId", "Name"), new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-left:15px">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-left:15px">
+       <input type="submit" class="btn btn-default" value="Create" />
+    </div>
+}
+
+

@@ -27,6 +27,7 @@ namespace ForumProject.Controllers
                 ApplicationUser user = context.Users.FirstOrDefault(u => u.Id == discuss.UserId);
                 discuss.ApplicationUser.UserName = user.UserName;
             }
+
             return View(model);
         }
         [HttpGet]
@@ -34,6 +35,7 @@ namespace ForumProject.Controllers
         {
             DiscussionPageViewModel discussmodel = new DiscussionPageViewModel();
             discussmodel.Discussion = context.Discussions.FirstOrDefault(d => d.DiscussionId == discussionId);
+            discussmodel.Categories = context.Categories.ToList();
 
             ApplicationUser user = context.Users.FirstOrDefault(u => u.Id == discussmodel.Discussion.UserId);
             discussmodel.Discussion.ApplicationUser = new ApplicationUser();
@@ -69,7 +71,37 @@ namespace ForumProject.Controllers
             context.SaveChanges();
             return RedirectToAction("Discussion",new { discussionId = discussId });
         }
+        [HttpGet]
+        public ActionResult CreateDiscussion()
+        {
+            CreateDiscussionViewModel model = new CreateDiscussionViewModel();
+            model.Categories = context.Categories.ToList();
+            return View(model);
 
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult CreateDiscussion(CreateDiscussionViewModel model)
+        {
+            Discussion newDiscussion = new Discussion();
+            newDiscussion.UserId = User.Identity.GetUserId();
+            newDiscussion.Title = model.Title;
+            newDiscussion.CategoryId = model.CategoryId;
+            newDiscussion.Description = model.Description;
+            newDiscussion.CreatedDate = DateTime.Now;
+            context.Discussions.Add(newDiscussion);
+          
+
+            ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == newDiscussion.UserId);
+            user.DiscussionsCount = user.DiscussionsCount + 1;
+            Category category = context.Categories.SingleOrDefault(c => c.CategoryId == newDiscussion.CategoryId);
+            category.DiscussionsCount = category.DiscussionsCount + 1;
+
+
+            context.SaveChanges();
+            return RedirectToAction("Index");
+          
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

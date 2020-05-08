@@ -3,16 +3,20 @@
 @{
     ViewBag.Title = "Home Page";
 }
+
+<div title="To create discussion you must be authenticated">
+    <button style="text-align:right;margin-top:10px"><a href='@Url.Action("CreateDiscussion","Home")' class="btn btn-group-lg" disabled="@(!User.Identity.IsAuthenticated)">Create discussion</a></button>
+</div>
 <div class=" row">
     <div class="col-md-8">
         <h3>Discussions</h3>
 
         @{
             for (int i = 0; i < Model.Discussions.Count; i++)
-            { 
+            {
                 <div class="panel panel-warning">
                     <div class="page-header" style="text-align:center; margin-top:10px">
-                                <a href='@Url.Action("Discussion","Home", new { discussionId= @Model.Discussions[i].DiscussionId})'> @Model.Discussions[i].Title</a>
+                                <a href='@Url.Action("Discussion", "Home", new { discussionId = @Model.Discussions[i].DiscussionId })'> @Model.Discussions[i].Title</a>
                     </div>
                     <div class="panel panel-body">
                         <div class="col-md-2">
@@ -31,12 +35,29 @@
 
                     </div>
                 </div>
-        
+
             }
 
         }
 
     </div>
     <div class="col-md-4">
+        <h3>Categories</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href='@Url.Action("Index", "Home", new { categoryId = 0 })'>Show all discussions</a>
+            </li>
+                @{
+                    foreach (var category in Model.Categories)
+                    {
+                    <li class="list-group-item">
+                        <span class="badge">@category.DiscussionsCount</span>
+                        <a href='@Url.Action("Index", "Home", new { categoryId = category.CategoryId })'>@category.Name</a>
+                    </li>
+                        }
+                    }
+        </ul>
+
     </div>
+                    
 </div>

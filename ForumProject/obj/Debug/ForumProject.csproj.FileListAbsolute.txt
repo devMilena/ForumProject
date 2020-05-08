@@ -101,6 +101,7 @@ C:\Users\Milena\source\repos\ForumProject\ForumProject\bin\Microsoft.Owin.Securi
 C:\Users\Milena\source\repos\ForumProject\ForumProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Milena\source\repos\ForumProject\ForumProject\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Milena\source\repos\ForumProject\ForumProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csprojAssemblyReference.cache
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.InitialCreate.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.CreateTables.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.UserStatistics.resources
@@ -111,4 +112,3 @@ C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.cs
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.CopyComplete
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.dll
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.pdb
-C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csprojAssemblyReference.cache

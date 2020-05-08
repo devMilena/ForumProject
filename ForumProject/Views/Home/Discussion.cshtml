@@ -6,7 +6,7 @@
 }
 
 <h2>Discussion</h2>
-
+<button></button>
 <div class="row">
     <div class="col-md-8">
         <div class="panel panel-danger">
@@ -23,47 +23,66 @@
                 <div class="col-md-10" style="text-align:center">
                     @Model.Discussion.Description
                 </div>
-        
+
             </div>
         </div>
-        @{ 
+        @{
 
             for (int i = 0; i < Model.Posts.Count; i++)
             {
-        <div class="panel panel-warning">
-            <div class="panel-body">
-                <div class="col-md-2">
-                    <p style="text-align: center; font-size: 30px; margin-bottom: 0; color: tan"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
-                    <p style="text-align: center; margin-bottom: 0;">@Model.Posts[i].ApplicationUser.UserName</p>
-                    <span class="badge"> Posts: @Model.Posts[i].ApplicationUser.PostsCount</span>
-                    <span class="badge">Discussions:@Model.Posts[i].ApplicationUser.DiscussionsCount</span>
-                </div>
-                <div class="col-md-10" style="text-align:center">
-                    @Model.Posts[i].Text
-                </div>
-               
-            </div>
-        </div>
-            }
-         }
+                <div class="panel panel-warning">
+                    <div class="panel-body">
+                        <div class="col-md-2">
+                            <p style="text-align: center; font-size: 30px; margin-bottom: 0; color: tan"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
+                            <p style="text-align: center; margin-bottom: 0;">@Model.Posts[i].ApplicationUser.UserName</p>
+                            <span class="badge"> Posts: @Model.Posts[i].ApplicationUser.PostsCount</span>
+                            <span class="badge">Discussions:@Model.Posts[i].ApplicationUser.DiscussionsCount</span>
+                        </div>
+                        <div class="col-md-10" style="text-align:center">
+                            @Model.Posts[i].Text
+                        </div>
 
-        @using (Html.BeginForm("Discussion","Home", FormMethod.Post, new { @class="",role="form"}))
+                    </div>
+                </div>
+            }
+        }
+
+        @using (Html.BeginForm("Discussion", "Home", FormMethod.Post, new { @class = "", role = "form" }))
         {
-            <input type="hidden" name="discussId" value="@Model.Discussion.DiscussionId"/>
+            <input type="hidden" name="discussId" value="@Model.Discussion.DiscussionId" />
             <div class="panel panel-warning">
                 <div class="panel-body">
                     <label for="inputPost">New Post</label>
                     <textarea class="form-control" rows="4" name="post" style="max-width:100%"></textarea>
 
                     <div class="form-group">
-                        <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default" >Post</button>
+                        <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Post</button>
                     </div>
                 </div>
             </div>
         }
- </div>
     </div>
-    <div class="col-md-4">
 
-    </div>
+    <div class="col-md-4">
+      
+            <h3>Categories</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href='@Url.Action("Index", "Home", new { categoryId = 0 })'>Show all discussions</a>
+                </li>
+                @{
+                    foreach (var category in Model.Categories)
+                    {
+                        <li class="list-group-item">
+                            <span class="badge">@category.DiscussionsCount</span>
+                            <a href='@Url.Action("Index", "Home", new { categoryId = category.CategoryId })'>@category.Name</a>
+                        </li>
+                    }
+                }
+            </ul>
+
+        </div>
+
+
+</div>
 
