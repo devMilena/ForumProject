@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ForumProject.Models.ForumModels
 {
-    public class Discussion
+    public class Discussion 
     {
         public int DiscussionId { get; set; }
         [Required]

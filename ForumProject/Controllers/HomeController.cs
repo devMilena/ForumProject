@@ -71,6 +71,47 @@ namespace ForumProject.Controllers
             context.SaveChanges();
             return RedirectToAction("Discussion",new { discussionId = discussId });
         }
+        [HttpPost]
+        public ActionResult IsLike(int discussionId)
+        {
+           
+            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
+            discussion.Likes = discussion.Likes + 1;
+          
+            context.SaveChanges();
+            return RedirectToAction("Discussion", new { discussionId = discussionId });
+        }
+        [HttpPost]
+        public ActionResult IsDislike(int discussionId)
+        {
+            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
+            discussion.Dislikes = discussion.Dislikes + 1;
+           
+            context.SaveChanges();
+            return RedirectToAction("Discussion", new { discussionId = discussionId });
+        }
+        [HttpPost]
+        public ActionResult IsLikePost(int postId, int discussionId)
+        {
+
+            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
+            Post post = context.Posts.SingleOrDefault(p => p.PostId == postId);
+            post.Likes = post.Likes + 1;
+
+            context.SaveChanges();
+            return RedirectToAction("Discussion", new { discussionId = discussionId });
+        }
+        [HttpPost]
+        public ActionResult IsDislikePost(int postId, int discussionId)
+        {
+
+            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
+            Post post= context.Posts.SingleOrDefault(p => p.PostId == postId);
+            post.Dislikes = post.Dislikes + 1;
+
+            context.SaveChanges();
+            return RedirectToAction("Discussion", new {  discussionId=discussionId});
+        }
         [HttpGet]
         public ActionResult CreateDiscussion()
         {
