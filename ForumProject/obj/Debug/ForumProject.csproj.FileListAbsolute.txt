@@ -101,12 +101,13 @@ C:\Users\Milena\source\repos\ForumProject\ForumProject\bin\Microsoft.Owin.Securi
 C:\Users\Milena\source\repos\ForumProject\ForumProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Milena\source\repos\ForumProject\ForumProject\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Milena\source\repos\ForumProject\ForumProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csprojAssemblyReference.cache
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.InitialCreate.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.CreateTables.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.UserStatistics.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.CreateTablesforce.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.CategoryData.resources
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.ModifyThePostTable.resources
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.DeleteRequiredAnnotationFromthePostTable.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.GenerateResource.cache
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.CoreCompileInputs.cache
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.CopyComplete

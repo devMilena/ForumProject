@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace ForumProject.Models.ForumModels
     public class Post
     {
         public int PostId { get; set; }
+      
         public string Text { get; set; }
         public DateTime CreatedDate { get; set; }
         public int Likes { get; set; }

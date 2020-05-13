@@ -30,6 +30,7 @@ namespace ForumProject.Controllers
 
             return View(model);
         }
+
         [HttpGet]
         public ActionResult Discussion(int discussionId)
         {
@@ -54,72 +55,81 @@ namespace ForumProject.Controllers
 
             return View(discussmodel);
         }
+
         [HttpPost]
         [Authorize]
         public ActionResult Discussion(int discussId, string post)
         {
+
             Post newPost = new Post();
+            
             newPost.Text = post;
             newPost.DiscussionId = discussId;
             newPost.UserId = User.Identity.GetUserId();
             newPost.CreatedDate = DateTime.Now;
             context.Posts.Add(newPost);
+
             ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == newPost.UserId);
             user.PostsCount = user.PostsCount + 1;
+
             Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == newPost.DiscussionId);
             discussion.PostCount = discussion.PostCount + 1;
+
             context.SaveChanges();
+
             return RedirectToAction("Discussion",new { discussionId = discussId });
         }
+
         [HttpPost]
-        public ActionResult IsLike(int discussionId)
-        {
-           
+        public ActionResult DiscussionLike(int discussionId)
+        {           
             Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
             discussion.Likes = discussion.Likes + 1;
           
             context.SaveChanges();
+
             return RedirectToAction("Discussion", new { discussionId = discussionId });
         }
+
         [HttpPost]
-        public ActionResult IsDislike(int discussionId)
+        public ActionResult DiscussionDislike(int discussionId)
         {
             Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
             discussion.Dislikes = discussion.Dislikes + 1;
            
             context.SaveChanges();
+
             return RedirectToAction("Discussion", new { discussionId = discussionId });
         }
-        [HttpPost]
-        public ActionResult IsLikePost(int postId, int discussionId)
-        {
 
-            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
+        [HttpPost]
+        public ActionResult PostLike(int postId, int discussionId)
+        {
             Post post = context.Posts.SingleOrDefault(p => p.PostId == postId);
             post.Likes = post.Likes + 1;
 
             context.SaveChanges();
             return RedirectToAction("Discussion", new { discussionId = discussionId });
         }
-        [HttpPost]
-        public ActionResult IsDislikePost(int postId, int discussionId)
-        {
 
-            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
+        [HttpPost]
+        public ActionResult PostDislike(int postId, int discussionId)
+        {
             Post post= context.Posts.SingleOrDefault(p => p.PostId == postId);
             post.Dislikes = post.Dislikes + 1;
 
             context.SaveChanges();
-            return RedirectToAction("Discussion", new {  discussionId=discussionId});
+            return RedirectToAction("Discussion", new {  discussionId = discussionId});
         }
+
         [HttpGet]
         public ActionResult CreateDiscussion()
         {
             CreateDiscussionViewModel model = new CreateDiscussionViewModel();
             model.Categories = context.Categories.ToList();
             return View(model);
-
         }
+
         [HttpPost]
         [Authorize]
         public ActionResult CreateDiscussion(CreateDiscussionViewModel model)
@@ -130,18 +140,15 @@ namespace ForumProject.Controllers
             newDiscussion.CategoryId = model.CategoryId;
             newDiscussion.Description = model.Description;
             newDiscussion.CreatedDate = DateTime.Now;
-            context.Discussions.Add(newDiscussion);
-          
+            context.Discussions.Add(newDiscussion);          
 
             ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == newDiscussion.UserId);
             user.DiscussionsCount = user.DiscussionsCount + 1;
             Category category = context.Categories.SingleOrDefault(c => c.CategoryId == newDiscussion.CategoryId);
             category.DiscussionsCount = category.DiscussionsCount + 1;
 
-
             context.SaveChanges();
-            return RedirectToAction("Index");
-          
+            return RedirectToAction("Index");          
         }
         public ActionResult About()
         {

@@ -5,7 +5,7 @@
 }
 
 <div title="To create discussion you must be authenticated">
-    <button style="text-align:right;margin-top:10px"><a href='@Url.Action("CreateDiscussion","Home")' class="btn btn-group-lg" disabled="@(!User.Identity.IsAuthenticated)">Create discussion</a></button>
+    <button style="text-align:right;margin-top:10px;float:right"><a href='@Url.Action("CreateDiscussion","Home")' class="btn btn-group-lg" disabled="@(!User.Identity.IsAuthenticated)">Create discussion</a></button>
 </div>
 <div class=" row">
     <div class="col-md-8">
@@ -15,7 +15,7 @@
             for (int i = 0; i < Model.Discussions.Count; i++)
             {
                 <div class="panel panel-warning">
-                    <div class="page-header" style="text-align:center; margin-top:10px">
+                    <div class="page-header" style="text-align:center; margin-top:10px ">
                                 <a href='@Url.Action("Discussion", "Home", new { discussionId = @Model.Discussions[i].DiscussionId })'> @Model.Discussions[i].Title</a>
                     </div>
                     <div class="panel panel-body">

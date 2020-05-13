@@ -193,6 +193,14 @@
     <Compile Include="Migrations\202004262329585_CategoryData.Designer.cs">
       <DependentUpon>202004262329585_CategoryData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005130634239_ModifyThePostTable.cs" />
+    <Compile Include="Migrations\202005130634239_ModifyThePostTable.Designer.cs">
+      <DependentUpon>202005130634239_ModifyThePostTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005132220357_DeleteRequiredAnnotationFromthePostTable.cs" />
+    <Compile Include="Migrations\202005132220357_DeleteRequiredAnnotationFromthePostTable.Designer.cs">
+      <DependentUpon>202005132220357_DeleteRequiredAnnotationFromthePostTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ForumModels\Category.cs" />
@@ -296,6 +304,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004262329585_CategoryData.resx">
       <DependentUpon>202004262329585_CategoryData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005130634239_ModifyThePostTable.resx">
+      <DependentUpon>202005130634239_ModifyThePostTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005132220357_DeleteRequiredAnnotationFromthePostTable.resx">
+      <DependentUpon>202005132220357_DeleteRequiredAnnotationFromthePostTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

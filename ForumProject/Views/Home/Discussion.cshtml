@@ -26,14 +26,14 @@
 
                 <div class="col-md-2" style="float:right">
 
-                    @using (Html.BeginForm("IsLike", "Home", FormMethod.Post, new { }))
+                    @using (Html.BeginForm("DiscussionLike", "Home", FormMethod.Post, new { }))
                     {
                         <input type="hidden" name="discussionId" value="@Model.Discussion.DiscussionId" />
                         <div class="form-group">
                             <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Like:@Model.Discussion.Likes</button>
                         </div>
                     }
-                    @using (Html.BeginForm("IsDislike", "Home", FormMethod.Post, new { }))
+                    @using (Html.BeginForm("DiscussionDislike", "Home", FormMethod.Post, new { }))
                     {
                         <input type="hidden" name="discussionId" value="@Model.Discussion.DiscussionId" />
                         <div class="form-group">
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-md-2" style="float:right">
 
-                                    @using (Html.BeginForm("IsLikePost", "Home", FormMethod.Post, new { }))
+                                    @using (Html.BeginForm("PostLike", "Home", FormMethod.Post, new { }))
                                     {
                                         <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
                                         <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
@@ -71,7 +71,7 @@
                                             <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Like:@Model.Posts[i].Likes</button>
                                         </div>
                                     }
-                                    @using (Html.BeginForm("IsDislikePost", "Home", FormMethod.Post, new { }))
+                                    @using (Html.BeginForm("PostDislike", "Home", FormMethod.Post, new { }))
                                     {
                                         <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
                                         <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
@@ -95,7 +95,7 @@
                     <label for="inputPost">New Post</label>
                     <textarea class="form-control" rows="4" name="post" style="max-width:100%"></textarea>
 
-                    <div class="form-group">
+                    <div  class="form-group">
                         <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Post</button>
                     </div>
                 </div>
