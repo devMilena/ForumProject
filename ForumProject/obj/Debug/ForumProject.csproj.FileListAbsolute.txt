@@ -113,3 +113,5 @@ C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.cs
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.CopyComplete
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.dll
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.pdb
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csprojAssemblyReference.cache
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.UserFirstAndLastName.resources

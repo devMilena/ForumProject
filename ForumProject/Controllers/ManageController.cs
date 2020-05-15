@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ForumProject.Models;
+using static ForumProject.Models.IndexViewModel;
+using Microsoft.Ajax.Utilities;
 
 namespace ForumProject.Controllers
 {
@@ -15,9 +17,11 @@ namespace ForumProject.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext context;
 
         public ManageController()
         {
+            context = new ApplicationDbContext();
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -52,27 +56,65 @@ namespace ForumProject.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public ActionResult Index(ManageMessageId? message)
         {
+            // uslov ? iskaz1 : iskaz2;
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : (message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
+                : message == ManageMessageId.ChangeProfileSuccess ? "Your profile has been successufully change."
+                : "");
+            
             var userId = User.Identity.GetUserId();
+            
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            
+            ApplicationUser user = context.Users.FirstOrDefault(u => u.Id == userId);
+
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.UserName = user.UserName;
+            model.Email = user.Email;
+            model.PhoneNumber = user.PhoneNumber;
             return View(model);
+        }
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            var userId = User.Identity.GetUserId();
+      
+            ApplicationUser user = context.Users.FirstOrDefault(u => u.Id == userId);
+           
+            EditProfileViewModel model = new EditProfileViewModel();
+           
+            model.UserName = user.UserName;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.Email = user.Email;
+            model.PhoneNumber = user.PhoneNumber;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult EditProfile(EditProfileViewModel model)
+        {
+            var userId = User.Identity.GetUserId();
+         
+            ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == userId);
+           
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.PhoneNumber = model.PhoneNumber;
+            
+            context.SaveChanges();
+  
+            return RedirectToAction("Index", new { Message = ManageMessageId.ChangeProfileSuccess });
         }
 
         //
@@ -375,13 +417,15 @@ namespace ForumProject.Controllers
 
         public enum ManageMessageId
         {
+            
             AddPhoneSuccess,
             ChangePasswordSuccess,
             SetTwoFactorSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            ChangeProfileSuccess
         }
 
 #endregion

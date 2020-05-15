@@ -1,0 +1,36 @@
+﻿@model ForumProject.Models.EditProfileViewModel
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditProfile</h2>
+
+@using (Html.BeginForm("EditProfile", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group" style="margin-left:15px">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-left:15px">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-left:15px">
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { disabled="disabled", @class = "form-control",  })
+    </div>
+    <div class="form-group" style="margin-left:15px">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { disabled="disabled", @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-left:15px">
+        @Html.LabelFor(m => m.PhoneNumber)
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-left:15px">
+        <input type="submit" class="btn btn-default" value="Save" />
+    </div>
+}
+
+

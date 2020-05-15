@@ -63,6 +63,10 @@ namespace ForumProject.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }

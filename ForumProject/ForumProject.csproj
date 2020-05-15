@@ -201,6 +201,10 @@
     <Compile Include="Migrations\202005132220357_DeleteRequiredAnnotationFromthePostTable.Designer.cs">
       <DependentUpon>202005132220357_DeleteRequiredAnnotationFromthePostTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005132341426_UserFirstAndLastName.cs" />
+    <Compile Include="Migrations\202005132341426_UserFirstAndLastName.Designer.cs">
+      <DependentUpon>202005132341426_UserFirstAndLastName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ForumModels\Category.cs" />
@@ -280,6 +284,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Discussion.cshtml" />
     <Content Include="Views\Home\CreateDiscussion.cshtml" />
+    <Content Include="Views\Manage\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005132220357_DeleteRequiredAnnotationFromthePostTable.resx">
       <DependentUpon>202005132220357_DeleteRequiredAnnotationFromthePostTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005132341426_UserFirstAndLastName.resx">
+      <DependentUpon>202005132341426_UserFirstAndLastName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

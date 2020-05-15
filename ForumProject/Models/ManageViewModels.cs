@@ -10,11 +10,24 @@ namespace ForumProject.Models
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
-        public bool TwoFactor { get; set; }
-        public bool BrowserRemembered { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string UserName { get; set; }
     }
-
-    public class ManageLoginsViewModel
+    public class EditProfileViewModel
+    {
+       [Display (Name="Phone number")]
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+    }
+        public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
         public IList<AuthenticationDescription> OtherLogins { get; set; }
