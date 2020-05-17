@@ -108,10 +108,10 @@ C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Mi
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.CategoryData.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.ModifyThePostTable.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.DeleteRequiredAnnotationFromthePostTable.resources
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.UserFirstAndLastName.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.GenerateResource.cache
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.CoreCompileInputs.cache
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.CopyComplete
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.dll
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.pdb
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csprojAssemblyReference.cache
-C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.UserFirstAndLastName.resources

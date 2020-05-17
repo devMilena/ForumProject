@@ -44,63 +44,52 @@
                 </div>
 
             </div>
-         
+
         </div>
         @{
 
             for (int i = 0; i < Model.Posts.Count; i++)
             {
                 <div class="panel panel-warning">
-                            <div class="panel-body">
-                                <div class="col-md-2">
-                                    <p style="text-align: center; font-size: 30px; margin-bottom: 0; color: tan"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
-                                    <p style="text-align: center; margin-bottom: 0;">@Model.Posts[i].ApplicationUser.UserName</p>
-                                    <span class="badge"> Posts: @Model.Posts[i].ApplicationUser.PostsCount</span>
-                                    <span class="badge">Discussions:@Model.Posts[i].ApplicationUser.DiscussionsCount</span>
+                    <div class="panel-body">
+                        <div class="col-md-2">
+                            <p style="text-align: center; font-size: 30px; margin-bottom: 0; color: tan"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
+                            <p style="text-align: center; margin-bottom: 0;">@Model.Posts[i].ApplicationUser.UserName</p>
+                            <span class="badge"> Posts: @Model.Posts[i].ApplicationUser.PostsCount</span>
+                            <span class="badge">Discussions:@Model.Posts[i].ApplicationUser.DiscussionsCount</span>
+                        </div>
+                        <div class="col-md-8" style="text-align:center">
+                            @Model.Posts[i].Text
+                        </div>
+                        <div class="col-md-2" style="float:right">
+
+                            @using (Html.BeginForm("PostLike", "Home", FormMethod.Post, new { }))
+                            {
+                                <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
+                                <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
+                                <div class="form-group">
+                                    <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Like:@Model.Posts[i].Likes</button>
                                 </div>
-                                <div class="col-md-8" style="text-align:center">
-                                    @Model.Posts[i].Text
+                            }
+                            @using (Html.BeginForm("PostDislike", "Home", FormMethod.Post, new { }))
+                            {
+                                <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
+                                <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
+                                <div class="form-group">
+                                    <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Dislike:@Model.Posts[i].Dislikes</button>
                                 </div>
-                                <div class="col-md-2" style="float:right">
+                            }
 
-                                    @using (Html.BeginForm("PostLike", "Home", FormMethod.Post, new { }))
-                                    {
-                                        <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
-                                        <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
-                                        <div class="form-group">
-                                            <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Like:@Model.Posts[i].Likes</button>
-                                        </div>
-                                    }
-                                    @using (Html.BeginForm("PostDislike", "Home", FormMethod.Post, new { }))
-                                    {
-                                        <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
-                                        <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
-                                        <div class="form-group">
-                                            <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Dislike:@Model.Posts[i].Dislikes</button>
-                                        </div>
-                                    }
+                        </div>
 
-                                </div>
-
-                            </div>
-                </div>
-                }
-        }
-
-        @using (Html.BeginForm("Discussion", "Home", FormMethod.Post, new { @class = "", role = "form" }))
-        {
-            <input type="hidden" name="discussId" value="@Model.Discussion.DiscussionId" />
-            <div class="panel panel-warning">
-                <div class="panel-body">
-                    <label for="inputPost">New Post</label>
-                    <textarea class="form-control" rows="4" name="post" style="max-width:100%"></textarea>
-
-                    <div  class="form-group">
-                        <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Post</button>
                     </div>
                 </div>
-            </div>
+            }
         }
+        <div title="To create post you must be authenticated">
+            <button style="text-align:right;margin-top:10px;float:right"><a href='@Url.Action("CreatePost","Home", new { @discussionId = Model.Discussion.DiscussionId })' class="btn btn-group-lg" disabled="@(!User.Identity.IsAuthenticated)">Create post</a></button>
+        </div>
+
     </div>
 
     <div class="col-md-4">

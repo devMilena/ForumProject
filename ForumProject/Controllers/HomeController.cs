@@ -57,30 +57,6 @@ namespace ForumProject.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        public ActionResult Discussion(int discussId, string post)
-        {
-
-            Post newPost = new Post();
-            
-            newPost.Text = post;
-            newPost.DiscussionId = discussId;
-            newPost.UserId = User.Identity.GetUserId();
-            newPost.CreatedDate = DateTime.Now;
-            context.Posts.Add(newPost);
-
-            ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == newPost.UserId);
-            user.PostsCount = user.PostsCount + 1;
-
-            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == newPost.DiscussionId);
-            discussion.PostCount = discussion.PostCount + 1;
-
-            context.SaveChanges();
-
-            return RedirectToAction("Discussion",new { discussionId = discussId });
-        }
-
-        [HttpPost]
         public ActionResult DiscussionLike(int discussionId)
         {           
             Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
@@ -132,24 +108,75 @@ namespace ForumProject.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateDiscussion(CreateDiscussionViewModel model)
         {
-            Discussion newDiscussion = new Discussion();
-            newDiscussion.UserId = User.Identity.GetUserId();
-            newDiscussion.Title = model.Title;
-            newDiscussion.CategoryId = model.CategoryId;
-            newDiscussion.Description = model.Description;
-            newDiscussion.CreatedDate = DateTime.Now;
-            context.Discussions.Add(newDiscussion);          
+            if (!ModelState.IsValid)
+            {
 
-            ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == newDiscussion.UserId);
-            user.DiscussionsCount = user.DiscussionsCount + 1;
-            Category category = context.Categories.SingleOrDefault(c => c.CategoryId == newDiscussion.CategoryId);
-            category.DiscussionsCount = category.DiscussionsCount + 1;
+                model.Categories = context.Categories.ToList();
+                return View(model);
+            }
+               
+            else
+            {
+                Discussion newDiscussion = new Discussion();
+                newDiscussion.UserId = User.Identity.GetUserId();
+                newDiscussion.Title = model.Title;
+                newDiscussion.CategoryId = model.CategoryId;
+                newDiscussion.Description = model.Description;
+                newDiscussion.CreatedDate = DateTime.Now;
+                context.Discussions.Add(newDiscussion);
 
-            context.SaveChanges();
-            return RedirectToAction("Index");          
+                ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == newDiscussion.UserId);
+                user.DiscussionsCount = user.DiscussionsCount + 1;
+              
+                Category category = context.Categories.SingleOrDefault(c => c.CategoryId == newDiscussion.CategoryId);
+                category.DiscussionsCount = category.DiscussionsCount + 1;
+
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }      
         }
+        [HttpGet]
+        public ActionResult CreatePost(int discussionId)
+        {
+            CreatePostViewModel model = new CreatePostViewModel();
+            model.Discussion = context.Discussions.FirstOrDefault(d => d.DiscussionId == discussionId);
+            
+            return View(model);
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult CreatePost(CreatePostViewModel model)
+        {
+            if (!ModelState.IsValid)
+
+            return View(model); 
+          else      
+            {
+
+                Post newPost = new Post();
+
+                newPost.Text = model.Text;
+                newPost.DiscussionId = model.DiscussionId;
+                newPost.UserId = User.Identity.GetUserId();
+                newPost.CreatedDate = DateTime.Now;
+                context.Posts.Add(newPost);
+                ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == newPost.UserId);
+                user.PostsCount = user.PostsCount + 1;
+
+                Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == newPost.DiscussionId);
+                discussion.PostCount = discussion.PostCount + 1;
+                
+                context.SaveChanges();
+               
+                return RedirectToAction("Discussion", new { discussionid = newPost.DiscussionId});
+            }
+         
+        }
+        
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

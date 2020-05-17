@@ -210,6 +210,7 @@
     <Compile Include="Models\ForumModels\Category.cs" />
     <Compile Include="Models\ForumModels\Discussion.cs" />
     <Compile Include="Models\ForumModels\ForumViewModels\CreateDiscussionViewModel.cs" />
+    <Compile Include="Models\ForumModels\ForumViewModels\CreatePostViewModel.cs" />
     <Compile Include="Models\ForumModels\ForumViewModels\DiscussionPageViewModel.cs" />
     <Compile Include="Models\ForumModels\ForumViewModels\HomePageViewModel.cs" />
     <Compile Include="Models\ForumModels\Post.cs" />
@@ -285,6 +286,7 @@
     <Content Include="Views\Home\Discussion.cshtml" />
     <Content Include="Views\Home\CreateDiscussion.cshtml" />
     <Content Include="Views\Manage\EditProfile.cshtml" />
+    <Content Include="Views\Home\CreatePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
