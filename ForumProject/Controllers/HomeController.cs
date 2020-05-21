@@ -45,59 +45,135 @@ namespace ForumProject.Controllers
             discussmodel.Discussion.ApplicationUser.PostsCount = user.PostsCount;
             discussmodel.Discussion.ApplicationUser.DiscussionsCount = user.DiscussionsCount;
             discussmodel.Posts = context.Posts.Where(p => p.DiscussionId == discussionId).ToList();
+
+            discussmodel.Discussion.UsersDiscussionLikes = context.UsersDiscussionLikes.Where(l => l.DiscussionId == discussionId).ToList();
+            discussmodel.Discussion.UsersDiscussionDislikes = context.UsersDiscussionDislikes.Where(l => l.DiscussionId == discussionId).ToList();
+
+            var userId = User.Identity.GetUserId();
+            discussmodel.Discussion.DiscussLikedByUser = (discussmodel.Discussion.UsersDiscussionLikes.Where(e => e.UserId == userId)).Any();
+            discussmodel.Discussion.DiscussDislikedByUser = (discussmodel.Discussion.UsersDiscussionDislikes.Where(e => e.UserId == userId)).Any();
+            
             foreach (var post in discussmodel.Posts)
             {
+                // Add user data
                 user = context.Users.FirstOrDefault(u => u.Id == post.UserId);
                 post.ApplicationUser.UserName = user.UserName;
                 post.ApplicationUser.PostsCount = user.PostsCount;
                 post.ApplicationUser.DiscussionsCount = user.DiscussionsCount;
+
+                // Add likes and dislikes
+                post.UsersPostLikes = context.UsersPostLikes.Where(l => l.PostId == post.PostId).ToList();
+                post.UsersPostDislikes = context.UsersPostDislikes.Where(l => l.PostId == post.PostId).ToList();
+
+                var currentuserId = User.Identity.GetUserId();
+                post.LikedByUser = (post.UsersPostLikes.Where(e => e.UserId == currentuserId)).Any();
+                post.DislikedByUser = (post.UsersPostDislikes.Where(e => e.UserId == currentuserId)).Any();
             }
 
             return View(discussmodel);
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult DiscussionLike(int discussionId)
-        {           
-            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
-            discussion.Likes = discussion.Likes + 1;
-          
+        {
+            var userId = User.Identity.GetUserId();
+
+            var like = context.UsersDiscussionLikes.SingleOrDefault(l => l.DiscussionId == discussionId && l.UserId == userId);
+            if (like != null)
+                context.UsersDiscussionLikes.Remove(like);
+            else
+            {
+                like = new UserDiscussionLike() { DiscussionId = discussionId, UserId = userId };
+                context.UsersDiscussionLikes.Add(like);
+
+                var dislike = context.UsersDiscussionDislikes.SingleOrDefault(l => l.DiscussionId == discussionId && l.UserId == userId);
+                if (dislike != null)
+                    context.UsersDiscussionDislikes.Remove(dislike);
+            }
+
             context.SaveChanges();
 
             return RedirectToAction("Discussion", new { discussionId = discussionId });
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult DiscussionDislike(int discussionId)
         {
-            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
-            discussion.Dislikes = discussion.Dislikes + 1;
-           
+            var userId = User.Identity.GetUserId();
+
+            var dislike = context.UsersDiscussionDislikes.SingleOrDefault(l => l.DiscussionId == discussionId && l.UserId == userId);
+            if (dislike != null)
+                context.UsersDiscussionDislikes.Remove(dislike);
+            else
+            {
+                dislike = new UserDiscussionDislike() { DiscussionId = discussionId, UserId = userId };
+                context.UsersDiscussionDislikes.Add(dislike);
+
+                var like = context.UsersDiscussionLikes.SingleOrDefault(l => l.DiscussionId == discussionId && l.UserId == userId);
+                if (like != null)
+                    context.UsersDiscussionLikes.Remove(like);
+            }
+
             context.SaveChanges();
 
             return RedirectToAction("Discussion", new { discussionId = discussionId });
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult PostLike(int postId, int discussionId)
         {
-            Post post = context.Posts.SingleOrDefault(p => p.PostId == postId);
-            post.Likes = post.Likes + 1;
+            var userId = User.Identity.GetUserId();
+
+            var like = context.UsersPostLikes.SingleOrDefault(l => l.PostId == postId && l.UserId == userId);
+            if (like != null)
+                context.UsersPostLikes.Remove(like);
+            else
+            {
+                like = new UserPostLike() { PostId = postId, UserId = userId };
+                
+                context.UsersPostLikes.Add(like);
+
+                var dislike = context.UsersPostDislikes.SingleOrDefault(l => l.PostId==postId && l.UserId == userId);
+                if (dislike != null)
+                    context.UsersPostDislikes.Remove(dislike);
+            }
+
 
             context.SaveChanges();
             return RedirectToAction("Discussion", new { discussionId = discussionId });
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult PostDislike(int postId, int discussionId)
         {
-            Post post= context.Posts.SingleOrDefault(p => p.PostId == postId);
-            post.Dislikes = post.Dislikes + 1;
+            var userId = User.Identity.GetUserId();
 
+            var dislike = context.UsersPostDislikes.SingleOrDefault(l => l.PostId == postId &&  l.UserId == userId);
+            if (dislike != null)
+                context.UsersPostDislikes.Remove(dislike);
+            else
+            {
+                dislike = new UserPostDislike() { PostId=postId, UserId = userId };
+                context.UsersPostDislikes.Add(dislike);
+
+                var like = context.UsersPostLikes.SingleOrDefault(l => l.PostId == postId && l.UserId == userId);
+                if (like != null)
+                    context.UsersPostLikes.Remove(like);
+            }
             context.SaveChanges();
             return RedirectToAction("Discussion", new {  discussionId = discussionId});
         }
-
+        public ActionResult DeletePost(int discussionId, int postId)
+        {
+            Post post = context.Posts.SingleOrDefault(p => p.PostId == postId);
+            context.Posts.Remove(post);
+            context.SaveChanges();
+            return RedirectToAction("Discussion", new { discussionId = discussionId });
+        }
         [HttpGet]
         public ActionResult CreateDiscussion()
         {
@@ -162,6 +238,8 @@ namespace ForumProject.Controllers
                 newPost.DiscussionId = model.DiscussionId;
                 newPost.UserId = User.Identity.GetUserId();
                 newPost.CreatedDate = DateTime.Now;
+                
+                
                 context.Posts.Add(newPost);
                 ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == newPost.UserId);
                 user.PostsCount = user.PostsCount + 1;

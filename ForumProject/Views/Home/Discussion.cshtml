@@ -23,25 +23,29 @@
                 <div class="col-md-8" style="text-align:center">
                     @Model.Discussion.Description
                 </div>
-
-                <div class="col-md-2" style="float:right">
-
-                    @using (Html.BeginForm("DiscussionLike", "Home", FormMethod.Post, new { }))
-                    {
-                        <input type="hidden" name="discussionId" value="@Model.Discussion.DiscussionId" />
-                        <div class="form-group">
-                            <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Like:@Model.Discussion.Likes</button>
-                        </div>
-                    }
+                <div class="col-md-1" style="float:right">
                     @using (Html.BeginForm("DiscussionDislike", "Home", FormMethod.Post, new { }))
                     {
                         <input type="hidden" name="discussionId" value="@Model.Discussion.DiscussionId" />
                         <div class="form-group">
-                            <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Dislike:@Model.Discussion.Dislikes</button>
+                            @{ string cls = Model.Discussion.DiscussDislikedByUser ? "btn btn-danger" : "btn btn-default";  }
+                            <button type="submit" style=" float:right; margin-top:80px" class="@cls"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> @Model.Discussion.UsersDiscussionDislikes.Count</button>
                         </div>
                     }
-
                 </div>
+                <div class="col-md-1" style="float:right">
+
+                    @using (Html.BeginForm("DiscussionLike", "Home", FormMethod.Post, new { }))
+                    {
+                        <input type="hidden" name="discussionId" value="@Model.Discussion.DiscussionId" />
+
+                        <div class="form-group">
+                            @{ string clss = Model.Discussion.DiscussLikedByUser ? "btn btn-primary" : "btn btn-default"; }
+                            <button type="submit" style=" float:right; margin-top:80px" class="@clss"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @Model.Discussion.UsersDiscussionLikes.Count</button>
+                        </div>
+                    }
+                </div>
+
 
             </div>
 
@@ -61,27 +65,33 @@
                         <div class="col-md-8" style="text-align:center">
                             @Model.Posts[i].Text
                         </div>
-                        <div class="col-md-2" style="float:right">
+                        <div class="col-md-1" style="float:right">
+                            @using (Html.BeginForm("PostDislike", "Home", FormMethod.Post, new { }))
+                            {
+                                <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
+                                <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
+                                <div class="form-group">
+                                    @{ string clssP = Model.Posts[i].DislikedByUser ? "btn btn-danger" : "btn btn-default"; }
+                                    <button type="submit" style=" float:right; margin-top:80px" class="@clssP"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> @Model.Posts[i].UsersPostDislikes.Count</button>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="col-md-1" style="float:right ">
 
                             @using (Html.BeginForm("PostLike", "Home", FormMethod.Post, new { }))
                             {
                                 <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
                                 <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
                                 <div class="form-group">
-                                    <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Like:@Model.Posts[i].Likes</button>
+                                    @{ string clsspl = Model.Posts[i].LikedByUser ? "btn btn-primary" : "btn btn-default"; }
+                                    <button type="submit" style=" float:right; margin-top:80px;  " class="@clsspl"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @Model.Posts[i].UsersPostLikes.Count</button>
                                 </div>
                             }
-                            @using (Html.BeginForm("PostDislike", "Home", FormMethod.Post, new { }))
-                            {
-                                <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
-                                <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
-                                <div class="form-group">
-                                    <button type="submit" style=" float:right; margin-top:10px" class="btn btn-default">Dislike:@Model.Posts[i].Dislikes</button>
-                                </div>
-                            }
-
                         </div>
-
+                    </div>
+                    <div class="form-group" style=" margin-left:15px">
+                        <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeletePost","Home", new {@discussionId=Model.Posts[i].DiscussionId, @postId=Model.Posts[i].PostId})' class="btn btn-group-lg">Delete</a></button>
                     </div>
                 </div>
             }

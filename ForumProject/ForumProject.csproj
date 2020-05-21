@@ -205,6 +205,26 @@
     <Compile Include="Migrations\202005132341426_UserFirstAndLastName.Designer.cs">
       <DependentUpon>202005132341426_UserFirstAndLastName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005172324147_UserLikeAndDislike.cs" />
+    <Compile Include="Migrations\202005172324147_UserLikeAndDislike.Designer.cs">
+      <DependentUpon>202005172324147_UserLikeAndDislike.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005181538035_DeleteUserLikeAndDislike.cs" />
+    <Compile Include="Migrations\202005181538035_DeleteUserLikeAndDislike.Designer.cs">
+      <DependentUpon>202005181538035_DeleteUserLikeAndDislike.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005181605126_CreateUsersPostLikesAndUsersPostDislikesTables.cs" />
+    <Compile Include="Migrations\202005181605126_CreateUsersPostLikesAndUsersPostDislikesTables.Designer.cs">
+      <DependentUpon>202005181605126_CreateUsersPostLikesAndUsersPostDislikesTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005181732045_CreateUsersDiscussionLikesAndUsersDiscussionDislikesTables-force.cs" />
+    <Compile Include="Migrations\202005181732045_CreateUsersDiscussionLikesAndUsersDiscussionDislikesTables-force.Designer.cs">
+      <DependentUpon>202005181732045_CreateUsersDiscussionLikesAndUsersDiscussionDislikesTables-force.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.cs" />
+    <Compile Include="Migrations\202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.Designer.cs">
+      <DependentUpon>202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ForumModels\Category.cs" />
@@ -214,6 +234,10 @@
     <Compile Include="Models\ForumModels\ForumViewModels\DiscussionPageViewModel.cs" />
     <Compile Include="Models\ForumModels\ForumViewModels\HomePageViewModel.cs" />
     <Compile Include="Models\ForumModels\Post.cs" />
+    <Compile Include="Models\ForumModels\UserDiscussionDislike.cs" />
+    <Compile Include="Models\ForumModels\UserDiscussionLike.cs" />
+    <Compile Include="Models\ForumModels\UserPostDislike.cs" />
+    <Compile Include="Models\ForumModels\UserPostLike.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +344,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005132341426_UserFirstAndLastName.resx">
       <DependentUpon>202005132341426_UserFirstAndLastName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005172324147_UserLikeAndDislike.resx">
+      <DependentUpon>202005172324147_UserLikeAndDislike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005181538035_DeleteUserLikeAndDislike.resx">
+      <DependentUpon>202005181538035_DeleteUserLikeAndDislike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005181605126_CreateUsersPostLikesAndUsersPostDislikesTables.resx">
+      <DependentUpon>202005181605126_CreateUsersPostLikesAndUsersPostDislikesTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005181732045_CreateUsersDiscussionLikesAndUsersDiscussionDislikesTables-force.resx">
+      <DependentUpon>202005181732045_CreateUsersDiscussionLikesAndUsersDiscussionDislikesTables-force.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.resx">
+      <DependentUpon>202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

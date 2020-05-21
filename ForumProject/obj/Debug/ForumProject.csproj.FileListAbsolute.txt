@@ -109,6 +109,11 @@ C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Mi
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.ModifyThePostTable.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.DeleteRequiredAnnotationFromthePostTable.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.UserFirstAndLastName.resources
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.UserLikeAndDislike.resources
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.DeleteUserLikeAndDislike.resources
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.CreateUsersPostLikesAndUsersPostDislikesTables.resources
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.CreateUsersDiscussionLikesAndUsersDiscussionDislikesTablesforce.resources
+C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.Migrations.DeleteLikeAndDislikeFromPostAndDiscussion.resources
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.GenerateResource.cache
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.CoreCompileInputs.cache
 C:\Users\Milena\source\repos\ForumProject\ForumProject\obj\Debug\ForumProject.csproj.CopyComplete

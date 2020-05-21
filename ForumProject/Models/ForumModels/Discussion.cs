@@ -13,8 +13,7 @@ namespace ForumProject.Models.ForumModels
         [Required]
         public string Title { get; set; }
         public DateTime CreatedDate { get; set; }
-        public int Likes { get; set; }
-        public int Dislikes { get; set; }
+        
         public int PostCount { get; set; }
         public int ViewCount { get; set; }
         [Required]
@@ -26,5 +25,14 @@ namespace ForumProject.Models.ForumModels
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
         public List<Post> Posts  { get; set; }
+        public List<UserDiscussionLike> UsersDiscussionLikes { get; set; }
+        public List<UserDiscussionDislike> UsersDiscussionDislikes { get; set; }
+        
+        [NotMapped]
+        public bool DiscussLikedByUser { get; set; }
+        
+        [NotMapped]
+        public bool DiscussDislikedByUser { get; set; }
+
     }
 }
