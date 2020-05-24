@@ -28,7 +28,7 @@
                     {
                         <input type="hidden" name="discussionId" value="@Model.Discussion.DiscussionId" />
                         <div class="form-group">
-                            @{ string cls = Model.Discussion.DiscussDislikedByUser ? "btn btn-danger" : "btn btn-default";  }
+                            @{ string cls = Model.Discussion.DiscussDislikedByUser ? "btn btn-danger" : "btn btn-default"; }
                             <button type="submit" style=" float:right; margin-top:80px" class="@cls"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> @Model.Discussion.UsersDiscussionDislikes.Count</button>
                         </div>
                     }
@@ -48,6 +48,35 @@
 
 
             </div>
+
+            @if (Model.Discussion.DiscussionCreatedByUser)
+            {
+
+                <div class="form-group" style=" margin-left:15px">
+                    <button style="text-align:right;margin-top:10px" type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModal">
+                        Delete
+                    </button>
+                </div>
+
+                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Warning</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete the discussion?&hellip;</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeleteDiscussion", "Home", new { @discussionId = Model.Discussion.DiscussionId , @categoryId=Model.Discussion.CategoryId})' class="btn btn-group-sm">Yes</a></button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            }
+
 
         </div>
         @{
@@ -90,9 +119,34 @@
                             }
                         </div>
                     </div>
-                    <div class="form-group" style=" margin-left:15px">
-                        <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeletePost","Home", new {@discussionId=Model.Posts[i].DiscussionId, @postId=Model.Posts[i].PostId})' class="btn btn-group-lg">Delete</a></button>
-                    </div>
+                    @if (Model.Posts[i].PostedByUser)
+                    {
+                <div class="form-group" style=" margin-left:15px">
+                    <button style="text-align:right;margin-top:10px" type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModalPost">
+                        Delete
+                    </button>
+                    
+                    <div id="myModalPost" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Warning</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete the post?&hellip;</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeletePost", "Home", new { @discussionId = Model.Posts[i].DiscussionId, @postId = Model.Posts[i].PostId })' class="btn btn-group-sm">Yes</a></button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                </div>
+                    }
+
+
                 </div>
             }
         }
@@ -103,25 +157,24 @@
     </div>
 
     <div class="col-md-4">
-      
-            <h3>Categories</h3>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a href='@Url.Action("Index", "Home", new { categoryId = 0 })'>Show all discussions</a>
-                </li>
-                @{
-                    foreach (var category in Model.Categories)
-                    {
-                        <li class="list-group-item">
-                            <span class="badge">@category.DiscussionsCount</span>
-                            <a href='@Url.Action("Index", "Home", new { categoryId = category.CategoryId })'>@category.Name</a>
-                        </li>
-                    }
+
+        <h3>Categories</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href='@Url.Action("Index", "Home", new { categoryId = 0 })'>Show all discussions</a>
+            </li>
+            @{
+                foreach (var category in Model.Categories)
+                {
+                    <li class="list-group-item">
+                        <span class="badge">@category.DiscussionsCount</span>
+                        <a href='@Url.Action("Index", "Home", new { categoryId = category.CategoryId })'>@category.Name</a>
+                    </li>
                 }
-            </ul>
+            }
+        </ul>
 
-        </div>
-
-
+    </div>
 </div>
+
 

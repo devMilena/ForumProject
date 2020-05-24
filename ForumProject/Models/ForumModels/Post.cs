@@ -17,16 +17,23 @@ namespace ForumProject.Models.ForumModels
      
         public int DiscussionId { get; set; }
         public Discussion Discussion { get; set; }
+
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public ApplicationUser ApplicationUser{ get; set; }
 
         public List<UserPostLike> UsersPostLikes { get; set; }
         public List<UserPostDislike> UsersPostDislikes { get; set; }
+       
+
         [NotMapped]
         public bool LikedByUser { get; set; }
+
         [NotMapped]
         public bool DislikedByUser { get; set; }
+
+        [NotMapped]
+        public bool PostedByUser { get; set; }
 
 
     }

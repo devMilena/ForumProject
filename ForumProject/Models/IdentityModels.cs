@@ -34,6 +34,7 @@ namespace ForumProject.Models
         public DbSet<UserPostDislike> UsersPostDislikes { get; set; }
         public DbSet<UserDiscussionLike> UsersDiscussionLikes { get; set; }
         public DbSet<UserDiscussionDislike> UsersDiscussionDislikes { get; set; }
+     
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Discussion> Discussions { get; set; }

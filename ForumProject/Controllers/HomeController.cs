@@ -17,11 +17,16 @@ namespace ForumProject.Controllers
         {
             context = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult Index(int  categoryId=0 )
         {
             HomePageViewModel model = new HomePageViewModel();
-            model.Discussions = context.Discussions.ToList();
+            
             model.Categories = context.Categories.ToList();
+           
+            if (categoryId == 0)
+                model.Discussions = context.Discussions.ToList();
+            else
+                model.Discussions = context.Discussions.Where(d => d.CategoryId == categoryId).ToList();
             foreach (var discuss in model.Discussions)
             {
                 ApplicationUser user = context.Users.FirstOrDefault(u => u.Id == discuss.UserId);
@@ -52,7 +57,8 @@ namespace ForumProject.Controllers
             var userId = User.Identity.GetUserId();
             discussmodel.Discussion.DiscussLikedByUser = (discussmodel.Discussion.UsersDiscussionLikes.Where(e => e.UserId == userId)).Any();
             discussmodel.Discussion.DiscussDislikedByUser = (discussmodel.Discussion.UsersDiscussionDislikes.Where(e => e.UserId == userId)).Any();
-            
+            discussmodel.Discussion.DiscussionCreatedByUser = discussmodel.Discussion.UserId == userId;
+  
             foreach (var post in discussmodel.Posts)
             {
                 // Add user data
@@ -65,9 +71,9 @@ namespace ForumProject.Controllers
                 post.UsersPostLikes = context.UsersPostLikes.Where(l => l.PostId == post.PostId).ToList();
                 post.UsersPostDislikes = context.UsersPostDislikes.Where(l => l.PostId == post.PostId).ToList();
 
-                var currentuserId = User.Identity.GetUserId();
-                post.LikedByUser = (post.UsersPostLikes.Where(e => e.UserId == currentuserId)).Any();
-                post.DislikedByUser = (post.UsersPostDislikes.Where(e => e.UserId == currentuserId)).Any();
+                post.LikedByUser = (post.UsersPostLikes.Where(e => e.UserId == userId)).Any();
+                post.DislikedByUser = (post.UsersPostDislikes.Where(e => e.UserId == userId)).Any();
+                post.PostedByUser = post.UserId == userId;
             }
 
             return View(discussmodel);
@@ -170,7 +176,17 @@ namespace ForumProject.Controllers
         public ActionResult DeletePost(int discussionId, int postId)
         {
             Post post = context.Posts.SingleOrDefault(p => p.PostId == postId);
+            post.UserId = User.Identity.GetUserId();
+            post.DiscussionId = discussionId;
+           
+            ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == post.UserId);
+            user.PostsCount = user.PostsCount - 1;
+
+            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == post.DiscussionId);
+            discussion.PostCount = discussion.PostCount - 1;
+ 
             context.Posts.Remove(post);
+
             context.SaveChanges();
             return RedirectToAction("Discussion", new { discussionId = discussionId });
         }
@@ -213,6 +229,24 @@ namespace ForumProject.Controllers
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }      
+        }
+
+        public ActionResult DeleteDiscussion(int discussionId, int categoryId)
+        {
+           
+            Discussion discussion = context.Discussions.SingleOrDefault(d => d.DiscussionId == discussionId);
+            discussion.UserId = User.Identity.GetUserId();
+            discussion.CategoryId = categoryId;
+
+            ApplicationUser user = context.Users.SingleOrDefault(u => u.Id == discussion.UserId);
+            user.DiscussionsCount = user.DiscussionsCount - 1;
+
+            Category category = context.Categories.SingleOrDefault(d => d.CategoryId == discussion.CategoryId);
+            category.DiscussionsCount = category.DiscussionsCount - 1;
+            context.Discussions.Remove(discussion);
+
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult CreatePost(int discussionId)

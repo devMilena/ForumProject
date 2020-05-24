@@ -34,5 +34,8 @@ namespace ForumProject.Models.ForumModels
         [NotMapped]
         public bool DiscussDislikedByUser { get; set; }
 
+        [NotMapped]
+        public bool DiscussionCreatedByUser { get; set; }
+
     }
 }
