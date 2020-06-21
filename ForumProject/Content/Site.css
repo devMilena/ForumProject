@@ -24,11 +24,152 @@ textarea {
 }
 
 .milena {
-    margin-left:30px;
+    margin-left: 30px;
 }
+
 .field-validation-error {
-    color:red;
+    color: red;
 }
-.input-validation-error  {
+
+.input-validation-error {
     border: 2px solid red;
 }
+
+.navbar-inverse {
+    background-color: #FF8F5E;
+    border-color: #FF8F5E;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #B33C12;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #B33C12;
+    }
+
+.profile-background {
+    background-image: url(images/girl.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 300px;
+    position: relative;
+    margin-top: -110px;
+}
+
+.panel-warning {
+    border-color: #F3BB45;
+}
+
+.page-header {
+    border-bottom: 1px solid #F3BB45;
+    text-align: center;
+    margin-top: 10px
+}
+
+.discussionTitle {
+    color: #F3BB45;
+    font-weight: 600;
+    font-size: large;
+    margin: 0;
+}
+
+a.discussionTitle:hover {
+    color: #EB5E28;
+    text-decoration: none;
+}
+
+.badge {
+    background-color: #F3BB45;
+}
+
+.glyphicon-user {
+    color: #F3BB45;
+}
+
+.username {
+    text-align: center;
+    margin-bottom: 0;
+    color: #948f88;
+    font-weight: 600;
+}
+
+.glyphicon-comment {
+    color: #FF8F5E;
+}
+
+.headerTitle {
+    color: #66615B;
+}
+
+.btn-lg {
+    font-size: 20px;
+    border-radius: 50px;
+    padding: 11px 30px;
+    font-weight: 400;
+    float: right;
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    border: 1px solid #F3BB45;
+}
+
+li > a {
+    color: #EB5E28;
+}
+
+    li > a:hover {
+        color: #F3BB45;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+.btn-like {
+    color: #7AC29A;
+    background-color: white;
+    border-color: #7AC29A;
+}
+
+    .btn-like:hover {
+        color: white;
+        background-color: #7AC29A;
+        border-color: #7AC29A;
+    }
+
+.btn-liked {
+    color: white;
+    background-color: #7AC29A;
+    border-color: #7AC29A;
+}
+
+    .btn-liked:hover {
+        color: white;
+        background-color: #7AC29A;
+        border-color: #7AC29A;
+    }
+
+.btn-dislike {
+    color: #EB5E28;
+    background-color: white;
+    border-color: #EB5E28;
+}
+
+    .btn-dislike:hover {
+        color: white;
+        background-color: #EB5E28;
+        border-color: #EB5E28;
+    }
+
+.btn-disliked {
+    color: white;
+    background-color: #EB5E28;
+    border-color: #EB5E28;
+}
+
+    .btn-disliked:hover {
+        color: white;
+        background-color: #EB5E28;
+        border-color: #EB5E28;
+    }

@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Discussion</h2>
+<h2 class="headerTitle">Discussion</h2>
 
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-danger">
+        <div class="panel panel-warning">
             <div class="page-header" style="text-align:center; margin-top:10px">
-                <h3> @Model.Discussion.Title</h3>
+                <p class="discussionTitle">@Model.Discussion.Title</p>
             </div>
             <div class="panel panel-body">
                 <div class="col-md-2">
@@ -28,7 +28,7 @@
                     {
                         <input type="hidden" name="discussionId" value="@Model.Discussion.DiscussionId" />
                         <div class="form-group">
-                            @{ string cls = Model.Discussion.DiscussDislikedByUser ? "btn btn-danger" : "btn btn-default"; }
+                            @{ string cls = Model.Discussion.DiscussDislikedByUser ? "btn btn-disliked" : "btn btn-dislike"; }
                             <button type="submit" style=" float:right; margin-top:80px" class="@cls"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> @Model.Discussion.UsersDiscussionDislikes.Count</button>
                         </div>
                     }
@@ -40,7 +40,7 @@
                         <input type="hidden" name="discussionId" value="@Model.Discussion.DiscussionId" />
 
                         <div class="form-group">
-                            @{ string clss = Model.Discussion.DiscussLikedByUser ? "btn btn-primary" : "btn btn-default"; }
+                            @{ string clss = Model.Discussion.DiscussLikedByUser ? "btn btn-liked" : "btn btn-like"; }
                             <button type="submit" style=" float:right; margin-top:80px" class="@clss"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @Model.Discussion.UsersDiscussionLikes.Count</button>
                         </div>
                     }
@@ -100,7 +100,7 @@
                                 <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
                                 <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
                                 <div class="form-group">
-                                    @{ string clssP = Model.Posts[i].DislikedByUser ? "btn btn-danger" : "btn btn-default"; }
+                                    @{ string clssP = Model.Posts[i].DislikedByUser ? "btn btn-disliked" : "btn btn-dislike"; }
                                     <button type="submit" style=" float:right; margin-top:80px" class="@clssP"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> @Model.Posts[i].UsersPostDislikes.Count</button>
                                 </div>
                             }
@@ -113,7 +113,7 @@
                                 <input type="hidden" name="discussionId" value="@Model.Posts[i].DiscussionId" />
                                 <input type="hidden" name="postId" value="@Model.Posts[i].PostId" />
                                 <div class="form-group">
-                                    @{ string clsspl = Model.Posts[i].LikedByUser ? "btn btn-primary" : "btn btn-default"; }
+                                    @{ string clsspl = Model.Posts[i].LikedByUser ? "btn btn-liked" : "btn btn-like"; }
                                     <button type="submit" style=" float:right; margin-top:80px;  " class="@clsspl"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @Model.Posts[i].UsersPostLikes.Count</button>
                                 </div>
                             }
@@ -121,29 +121,29 @@
                     </div>
                     @if (Model.Posts[i].PostedByUser)
                     {
-                <div class="form-group" style=" margin-left:15px">
-                    <button style="text-align:right;margin-top:10px" type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModalPost">
-                        Delete
-                    </button>
-                    
-                    <div id="myModalPost" class="modal fade" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Warning</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Are you sure you want to delete the post?&hellip;</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                    <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeletePost", "Home", new { @discussionId = Model.Posts[i].DiscussionId, @postId = Model.Posts[i].PostId })' class="btn btn-group-sm">Yes</a></button>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
-                </div>
+                        <div class="form-group" style=" margin-left:15px">
+                            <button style="text-align:right;margin-top:10px" type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModalPost">
+                                Delete
+                            </button>
+
+                            <div id="myModalPost" class="modal fade" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Warning</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete the post?&hellip;</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                            <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeletePost", "Home", new { @discussionId = Model.Posts[i].DiscussionId, @postId = Model.Posts[i].PostId })' class="btn btn-group-sm">Yes</a></button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                        </div>
                     }
 
 
@@ -151,14 +151,14 @@
             }
         }
         <div title="To create post you must be authenticated">
-            <button style="text-align:right;margin-top:10px;float:right"><a href='@Url.Action("CreatePost","Home", new { @discussionId = Model.Discussion.DiscussionId })' class="btn btn-group-lg" disabled="@(!User.Identity.IsAuthenticated)">Create post</a></button>
+            <a href='@Url.Action("CreatePost","Home", new { @discussionId = Model.Discussion.DiscussionId })' class="btn btn-danger btn-lg" disabled="@(!User.Identity.IsAuthenticated)">Create post</a>
         </div>
 
     </div>
 
     <div class="col-md-4">
 
-        <h3>Categories</h3>
+        <h3 class="headerTitle">Categories</h3>
         <ul class="list-group">
             <li class="list-group-item">
                 <a href='@Url.Action("Index", "Home", new { categoryId = 0 })'>Show all discussions</a>
@@ -176,5 +176,3 @@
 
     </div>
 </div>
-
-
