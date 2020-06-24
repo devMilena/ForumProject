@@ -298,7 +298,7 @@ namespace ForumProject.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Milena Jelcic.";
 
             return View();
         }

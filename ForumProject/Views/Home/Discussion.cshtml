@@ -10,17 +10,45 @@
 <div class="row">
     <div class="col-md-8">
         <div class="panel panel-warning">
-            <div class="page-header" style="text-align:center; margin-top:10px">
+            <div class="page-header" style="text-align:center; margin-top:10px;color:#66615B ">
                 <p class="discussionTitle">@Model.Discussion.Title</p>
             </div>
             <div class="panel panel-body">
                 <div class="col-md-2">
                     <p style="text-align: center; font-size: 30px; margin-bottom: 0; color: tan"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
-                    <p style="text-align: center; margin-bottom: 0;">@Model.Discussion.ApplicationUser.UserName</p>
+                    <p style="text-align: center; margin-bottom: 0; color:#66615B ">@Model.Discussion.ApplicationUser.UserName</p>
                     <span class="badge"> Posts: @Model.Discussion.ApplicationUser.PostsCount</span>
                     <span class="badge">Discussions:@Model.Discussion.ApplicationUser.DiscussionsCount</span>
+
+                    @if (Model.Discussion.DiscussionCreatedByUser)
+                    {
+
+                        <div class="form-group">
+                            <button type="button" class="btn-delete btn btn-danger" style="text-align:center" data-toggle="modal" data-target="#myModal">
+                                Delete discussion
+                            </button>
+                        </div>
+
+                        <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Warning</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete the discussion?&hellip;</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                        <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeleteDiscussion", "Home", new { @discussionId = Model.Discussion.DiscussionId , @categoryId=Model.Discussion.CategoryId})' class="btn btn-group-sm">Yes</a></button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    }
                 </div>
-                <div class="col-md-8" style="text-align:center">
+                <div class="col-md-8" style="        text-align: center">
                     @Model.Discussion.Description
                 </div>
                 <div class="col-md-1" style="float:right">
@@ -49,34 +77,7 @@
 
             </div>
 
-            @if (Model.Discussion.DiscussionCreatedByUser)
-            {
-
-                <div class="form-group" style=" margin-left:15px">
-                    <button style="text-align:right;margin-top:10px" type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModal">
-                        Delete
-                    </button>
-                </div>
-
-                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">Warning</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure you want to delete the discussion?&hellip;</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeleteDiscussion", "Home", new { @discussionId = Model.Discussion.DiscussionId , @categoryId=Model.Discussion.CategoryId})' class="btn btn-group-sm">Yes</a></button>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-            }
-
+          
 
         </div>
         @{
@@ -85,13 +86,39 @@
             {
                 <div class="panel panel-warning">
                     <div class="panel-body">
-                        <div class="col-md-2">
-                            <p style="text-align: center; font-size: 30px; margin-bottom: 0; color: tan"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
-                            <p style="text-align: center; margin-bottom: 0;">@Model.Posts[i].ApplicationUser.UserName</p>
-                            <span class="badge"> Posts: @Model.Posts[i].ApplicationUser.PostsCount</span>
-                            <span class="badge">Discussions:@Model.Posts[i].ApplicationUser.DiscussionsCount</span>
-                        </div>
-                        <div class="col-md-8" style="text-align:center">
+                                <div class="col-md-2">
+                                    <p style="text-align: center; font-size: 30px; margin-bottom: 0; color: tan"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
+                                    <p style="text-align: center; margin-bottom: 0;color:#66615B">@Model.Posts[i].ApplicationUser.UserName</p>
+                                    <span class="badge"> Posts: @Model.Posts[i].ApplicationUser.PostsCount</span>
+                                    <span class="badge">Discussions:@Model.Posts[i].ApplicationUser.DiscussionsCount</span>
+                                    @if (Model.Posts[i].PostedByUser)
+                                    {
+                                        <div class="form-group">
+                                            <button class="btn-delete btn btn-danger" data-toggle="modal" data-target="#myModalPost">
+                                                Delete post
+                                            </button>
+
+                                            <div id="myModalPost" class="modal fade" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title">Warning</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete the post?&hellip;</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                            <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeletePost", "Home", new { @discussionId = Model.Posts[i].DiscussionId, @postId = Model.Posts[i].PostId })' class="btn btn-group-sm">Yes</a></button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                        </div>
+                                    }
+                                </div>
+                        <div class="col-md-8" style="text-align:center;color:#66615B">
                             @Model.Posts[i].Text
                         </div>
                         <div class="col-md-1" style="float:right">
@@ -118,35 +145,11 @@
                                 </div>
                             }
                         </div>
+
+                        
+
+
                     </div>
-                    @if (Model.Posts[i].PostedByUser)
-                    {
-                        <div class="form-group" style=" margin-left:15px">
-                            <button style="text-align:right;margin-top:10px" type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModalPost">
-                                Delete
-                            </button>
-
-                            <div id="myModalPost" class="modal fade" tabindex="-1" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">Warning</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete the post?&hellip;</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                            <button style="text-align:right;margin-top:10px"><a href='@Url.Action("DeletePost", "Home", new { @discussionId = Model.Posts[i].DiscussionId, @postId = Model.Posts[i].PostId })' class="btn btn-group-sm">Yes</a></button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
-                        </div>
-                    }
-
-
                 </div>
             }
         }

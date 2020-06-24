@@ -3,30 +3,30 @@
     ViewBag.Title = "Manage";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2 style= "color:#FF8F5E">@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Profile</h4>
+    <h4 style= "color:#FF8F5E">Profile</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>First name:</dt>
+    <dl class="dl-horizontal"  >
+        <dt style= "color:#FF8F5E">First name:</dt>
         <dd>@Model.FirstName</dd>
     </dl>
-    <dl class="dl-horizontal">
-        <dt>Last name:</dt>
+    <dl class="dl-horizontal"  >  
+        <dt style= "color:#FF8F5E">Last name:</dt>
         <dd>@Model.LastName</dd>
     </dl>
-    <dl class="dl-horizontal">
-        <dt>Username:</dt>
+    <dl class="dl-horizontal"  >
+         <dt style= "color:#FF8F5E">Username:</dt>
         <dd>@Model.UserName</dd>
     </dl>
-    <dl class="dl-horizontal">
-        <dt>Email:</dt>
+    <dl class="dl-horizontal"   >
+        <dt style= "color:#FF8F5E">Email:</dt>
         <dd>@Model.Email</dd>
     </dl>
     <dl class="dl-horizontal">
-        <dt>Phone number:</dt>
+        <dt style= "color:#FF8F5E" >Phone number:</dt>
         <dd>@Model.PhoneNumber</dd>
     </dl>
 
@@ -35,8 +35,9 @@
 
             @if (Model.HasPassword)
             {
-                <button style="text-align:right; float:right "><a href='@Url.Action("ChangePassword","Manage")' class="btn btn-default">Change your password</a></button>
+                <a href='@Url.Action("ChangePassword","Manage")' class ="btn-createPost btn btn-danger" style="text-align:right;font-size:15px; margin-left:5px" >Change your password</a>
             }
+
             else
             {
                 @Html.ActionLink("Create", "SetPassword")
@@ -46,6 +47,6 @@
 
     </dl>
     <div class="form-group">
-        <button type="submit" style=" float:right; margin-top:10px"><a href='@Url.Action("EditProfile","Manage")' class="btn btn-default">Edit</a></button>
+        <a href='@Url.Action("EditProfile","Manage")' class="btn-createPost btn btn-danger" style=" margin-left:200px; font-size:15px" >Edit</a>
     </div>
 </div>

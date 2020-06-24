@@ -173,3 +173,42 @@ li > a {
         background-color: #EB5E28;
         border-color: #EB5E28;
     }
+.btn-delete {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 12px;
+    float: left;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 400;
+}
+.btn-createPost {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 12px;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 400;
+    margin-left: 210px;
+}
+.dropDownList {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: #fff;
+    cursor:pointer;
+}
+
+    .dropDownList:hover {
+        color: white;
+        background-color: #EB5E28;
+        border-color: #EB5E28;
+
+    }
+
+.panel-body {
+    margin-bottom: 0;
+}

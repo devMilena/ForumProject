@@ -226,10 +226,6 @@
     <Compile Include="Migrations\202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.Designer.cs">
       <DependentUpon>202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005220023288_DeleteUserPostsTable.cs" />
-    <Compile Include="Migrations\202005220023288_DeleteUserPostsTable.Designer.cs">
-      <DependentUpon>202005220023288_DeleteUserPostsTable.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ForumModels\Category.cs" />
@@ -366,9 +362,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.resx">
       <DependentUpon>202005192319268_DeleteLikeAndDislikeFromPostAndDiscussion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005220023288_DeleteUserPostsTable.resx">
-      <DependentUpon>202005220023288_DeleteUserPostsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

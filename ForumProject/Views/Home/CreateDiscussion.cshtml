@@ -7,31 +7,29 @@
 
 @using (Html.BeginForm("CreateDiscussion", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <div class="form-group" style="margin-left:15px" >
+    <div class="headerTitle" style="margin-left:15px; font-size=24px; color:#FF8F5E" >
         <h2>New discussion</h2>
         @Html.AntiForgeryToken()
         <h4>Create a new discussion.</h4>
-        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.ValidationSummary("", new { @class = "text-danger", style = "color:#FF8F5E" })
     </div>
     
-    <div class="form-group" style="margin-left:15px">             
-        @Html.LabelFor(m => m.Title )
-        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    <div class="form-group" style="margin-left:15px; color: #66615B ">             
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control"})
        
     </div>
     <div class="form-group" style="margin-left:15px">
         @Html.LabelFor(m => m.CategoryId)
-        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "CategoryId", "Name"), new { @class = "form-control" })
-      
-      
+        @Html.DropDownListFor(m => m.CategoryId , new SelectList(Model.Categories, "CategoryId", "Name"), new { @class = "form-control"})
     </div>
-    <div class="form-group" style="margin-left:15px">
+    <div class="form-group" style="margin-left:15px; color: #66615B">
         @Html.LabelFor(m => m.Description)
         @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
       
     </div>
     <div class="form-group" style=" margin-left:15px">
-       <input type="submit" style=" margin-left:210px; margin-top:10px"class="btn btn-default" value="Create" />
+       <input type="submit" class="btn-createPost" style="font-size:15px" value="Create" />
     </div>
 }
 
